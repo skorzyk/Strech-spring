@@ -1,0 +1,133 @@
+body {
+  display: flex;
+  height: 100vh;
+  margin: 0;
+  background-color: #eee;
+}
+
+.room {
+  position: relative;
+  height: 90vh;
+  width: 90vw;
+  margin: auto;
+  background-color: rgb(207, 230, 226);
+  box-shadow: 0 0 1px 1px black;
+  overflow: hidden;
+}
+
+.ball {
+  position: absolute;
+  bottom: 20%;
+  left: 15%;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-color: #ccc;
+  border: 1px solid black;
+  /* animation: fly-ball-x 1s cubic-bezier(0.17, 0.67, 0.6, 1),
+    fly-ball-y linear 1s; */
+}
+
+.column {
+  position: absolute;
+  bottom: 0;
+  left: 15%;
+  border-bottom: calc(0.2 * 90vh) green solid;
+  border-left: 17px solid transparent;
+  border-right: 17px solid transparent;
+}
+
+.spring {
+  position: absolute;
+  left: -3%;
+  bottom: calc(20% + 10px);
+  width: 17%;
+  height: 15px;
+  background-color: burlywood;
+  animation: spring 1.5s infinite alternate;
+  /* animation: release-spring 0.2s infinite; */
+  animation-play-state: paused;
+}
+
+.panel {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40vw;
+}
+
+.btn-action {
+  display: block;
+  width: 100%;
+  border: none;
+  background-color: brown;
+  color: white;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-family: arial;
+  line-height: 200%;
+  user-select: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+@media (max-width: 800px) {
+  .panel {
+    width: auto;
+    left: 20px;
+  }
+}
+.btn-action:hover {
+  background-color: rgb(128, 16, 16);
+}
+
+.bar {
+  height: 30px;
+  margin-top: 25px;
+  box-shadow: 0 0 3px 0 darkred;
+}
+
+.fill {
+  width: 2%;
+  height: 30px;
+  background-color: darkred;
+  animation: fill 1.5s infinite alternate ease-out;
+  animation-play-state: paused;
+}
+
+:root {
+  --spring-left: 0;
+  --power-x: 0;
+}
+
+@keyframes fill {
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes spring {
+  100% {
+    left: -14%;
+  }
+}
+
+@keyframes release-spring {
+  0% {
+    left: var(--spring-left, -14%);
+  }
+  100% {
+    left: -1%;
+  }
+}
+
+@keyframes fly-ball-x {
+  100% {
+    left: var(--power-x, 80%);
+  }
+}
+@keyframes fly-ball-y {
+  100% {
+    bottom: 0px;
+  }
+}
